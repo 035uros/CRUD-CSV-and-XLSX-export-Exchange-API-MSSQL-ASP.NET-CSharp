@@ -1,0 +1,29 @@
+﻿@page
+@model Gemini.Pages.Radnici.DeleteModel
+@using System.Data.SqlClient;
+
+@{ 
+    try
+    {
+        String id = Request.Query["id"];
+        String connectionString = "Data Source=DESKTOP-AV5CJI4;Initial Catalog=gemini;Integrated Security=True";
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+            String sql = "DELETE FROM clients WHERE id=@id";
+            using (SqlCommand command = new SqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
+            }
+
+            connection.Close();
+        }
+
+    }
+    catch (Exception e)
+    {
+    }
+
+    Response.Redirect("/Radnici/Index");
+}

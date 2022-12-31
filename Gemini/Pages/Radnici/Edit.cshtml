@@ -1,0 +1,81 @@
+﻿@page
+@model Gemini.Pages.Radnici.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Izmeni podatke</h2>
+
+@if (Model.errorMsg.Length > 0)
+{
+    <div class='alert alert-warning alert-dismissable' role='alert'>
+        <strong>@Model.errorMsg</strong>
+
+    </div>
+}
+
+<form method="post">
+    <input type="hidden" name="id" value="@Model.radnikInfo.id" />
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">
+            Ime
+        </label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="name" value="@Model.radnikInfo.name">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">
+            Prezime
+        </label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="lastname" value="@Model.radnikInfo.lastname">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">
+            Adresa
+        </label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="address" value="@Model.radnikInfo.address">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">
+            Bruto plata
+        </label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="brutosalary" value="@Model.radnikInfo.bruto_salary">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">
+            Pozicija
+        </label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="role" value="@Model.radnikInfo.role">
+        </div>
+    </div>
+
+    @if (Model.okMsg.Length > 0)
+    {
+        <div class="row mb-3">
+            <div class="col-sm-9">
+                <div class="alert alert-succsess alert-dismissable" role="alert">
+                    <strong>@Model.okMsg</strong>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary">Unesi</button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <button class="btn btn-outline-primary" href="/" role="button">Otkazi</button>
+        </div>
+    </div>
+</form>
+
+

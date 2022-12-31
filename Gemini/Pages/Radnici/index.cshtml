@@ -1,0 +1,50 @@
+﻿@page
+@model Gemini.Pages.Radnici.indexModel
+@{
+    ViewData["Title"] = "index";
+}
+<br />
+<h2>Lista radnika</h2>
+<a class='btn btn-primary btn-sm' href="/Radnici/Create">Novi radnik</a>
+<table class="table">
+    <thead>
+    <th>ID</th>
+    <th>Ime</th>
+    <th>Prezime</th>
+    <th>Adresa</th>
+    <th>Pozicija</th>
+    <th>Bruto plata</th>
+    <th>Bruto plata USD</th>
+    <th>Bruto plata EUR</th>
+    <th>Unet</th>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.listaRadnika)
+        {
+        <tr>
+            <td>@item.id</td>
+            <td>@item.name</td>
+            <td>@item.lastname</td>
+            <td>@item.address</td>
+            <td>@item.role</td>
+            <td>@item.bruto_salary</td>
+            <td>@Model.convertRSD(item.bruto_salary, "USD")</td>
+            <td>@Model.convertRSD(item.bruto_salary, "EUR")</td>
+            <td>@item.createdat</td>
+            <td>
+                <a class='btn btn-primary btn-sm' href="/Radnici/Edit?id=@item.id">Izmeni</a>
+                <a class='btn btn-danger btn-sm' href="/Radnici/Delete?id=@item.id">Obrisi</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div class="row mb-3">
+    <div class="offset-sm-3 col-sm-3 d-grid">
+        <a  href="/Radnici/Index?xlsx=da" class="btn btn-outline-primary">Izvezi sve podatke u Excel</a>
+    </div>
+    <div role="button" class="col-sm-3 d-grid">
+        <a class="btn btn-outline-primary" href="/Radnici/Index?csv=da" role="button">Izvezi sve podatke u CSV</a>
+    </div>
+</div>
